@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-require('dotenv').config({ path: '.env.development' });
+require('dotenv').config({ path: '.env' });
 
 module.exports = (env) => {
   const isProduction = env === 'production';
@@ -44,14 +44,15 @@ module.exports = (env) => {
     plugins: [
       CSSExtract,
       new webpack.DefinePlugin({
-        'process.env.GEOCODE_API_KEY': JSON.stringify(process.env.GEOCODE_API_KEY)
+        'process.env.GEOCODE_API_KEY': JSON.stringify(process.env.GEOCODE_API_KEY),
+        'process.env.DARKSKY_API_KEY': JSON.stringify(process.env.DARKSKY_API_KEY)
       })
     ],
     devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
       contentBase: path.join(__dirname, 'public'),
       historyApiFallback: true,
-      publicPath: '/dist/'
+      publicPath: '/dist/',
     }
   }
 }

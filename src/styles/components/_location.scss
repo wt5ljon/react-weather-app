@@ -1,0 +1,29 @@
+.location {
+    padding: $m-size;    
+}
+
+.location__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.location__input {
+    background: darken(white, 15%);
+    border-radius: 6px;
+    flex-grow: 1;
+    color: darken($evening, 15%);
+    border: none;
+    border-bottom: .3rem solid darken(white, 40%);
+    margin-right: $s-size;
+    padding: $s-size;
+}
+
+.location__button {
+    background: $sunflower;
+    border: none;
+    border-bottom: .3rem solid darken($sunflower, 25%);
+    border-radius: 6px;
+    color: darken($evening, 15%);
+    font-weight: 700;
+    padding: $s-size;
+}

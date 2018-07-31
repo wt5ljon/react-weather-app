@@ -3,4 +3,4 @@ node_modules/
 public/images/Thumbs.db
 public/dist/
 
-.env.development
+.env

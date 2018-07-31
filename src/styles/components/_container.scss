@@ -1,0 +1,11 @@
+.container {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 0 $m-size;
+}
+
+.block {
+    background: $irises;
+    border-radius: 10px;
+    margin-bottom: $l-size
+}

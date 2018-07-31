@@ -1,0 +1,13 @@
+.footer {
+    background: $starry_night;
+    padding: $s-size;
+}
+
+.footer__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__text {
+    color: $sunflower; 
+}
