@@ -8,19 +8,19 @@ const Location = (props) => {
     props.handleRequest(encodedLocation);
     e.target.elements.location.value = '';
   }
-  const buttonText = props.buttonText;
+
   return (
     <div className="block">
       <form className="location" onSubmit={handleSearchLocation}>
         <span className="location__row">
             <input 
-            className="location__input" 
-            type="text" name="location" 
-            autoComplete="off" 
-            placeholder="Enter a Zipcode, a City or an Address"
-            onFocus={props.onInputChange} 
+              className="location__input" 
+              type="text" name="location" 
+              autoComplete="off" 
+              placeholder="Enter a Zipcode, a City or an Address"
+              onFocus={props.onInputChange} 
             />
-            <button className="location__button">{buttonText} Location</button>
+            <button className="location__button">{props.buttonText} Location</button>
         </span>
       </form>
       <div className="error__block">

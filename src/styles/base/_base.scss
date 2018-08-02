@@ -23,3 +23,9 @@ body {
 button {
     cursor: pointer;
 }
+
+.wi {
+    font-size: 80px;
+    color: darken($sunflower, 10%);
+    padding: $l-size;
+}
