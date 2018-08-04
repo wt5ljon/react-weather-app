@@ -20,7 +20,7 @@ const Location = (props) => {
               placeholder="Enter a Zipcode, a City or an Address"
               onFocus={props.onInputChange} 
             />
-            <button className="location__button">{props.buttonText} Location</button>
+            <button className="app-button">{props.buttonText} Location</button>
         </span>
       </form>
       <div className="error__block">

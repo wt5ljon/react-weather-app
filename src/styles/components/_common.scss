@@ -1,0 +1,53 @@
+.container {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 0 $m-size;
+}
+
+.block {
+    background: $crimson_sky;
+    border-radius: 10px;
+    margin: $l-size 0;
+}
+
+.row__data {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: $s-size;
+    h4 {
+        color: $ultramarine;
+        font-size: $row-size;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    background: $off_white;
+    color: $ultramarine;
+}
+
+.icon {
+    background:$off_white;
+    color: $indigo;
+    font-size: 80px;
+    margin: $s-size;    
+    padding: $l-size;
+}
+
+.error {
+    background: $ultramarine;
+    border-radius: 10px;
+    color: $off_white;
+    display: block;
+    font-size: $row-size;
+    font-weight: 700;
+    margin-bottom: $m-size;
+    padding: $s-size;
+    text-align: center;
+}

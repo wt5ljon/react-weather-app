@@ -1,8 +1,9 @@
 @import './base/settings';
 @import './base/base';
-@import './components/header';
-@import './components/container';
-@import './components/currentwx';
+@import './components/common';
+@import './components/current';
 @import './components/footer';
+@import './components/forecast';
+@import './components/header';
 @import './components/location';
 @import '~weather-icons/css/weather-icons';

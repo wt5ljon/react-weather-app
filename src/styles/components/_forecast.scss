@@ -1,0 +1,31 @@
+.forecast__header {
+    color: $off-white;
+    font-size: $row-size;
+    font-weight: 700;
+}
+
+.forecast__link {
+    background: $crimson_sky;
+    border: none;
+    border-radius: 6px;
+    color: $ultramarine;
+    font-size: $row-size;
+    font-weight: 700;
+    padding: $s-size;
+    text-decoration: none;
+}
+
+.forecast__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+}
+
+.forecast__text {
+    color: $ultramarine;
+    display: block;
+    font-size: $row-size;
+    font-weight: 700;
+    padding: $xs-size $s-size;
+}

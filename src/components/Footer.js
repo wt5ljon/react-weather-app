@@ -1,16 +1,12 @@
 import React from 'react';
 
-const Footer = () => {
-    return (
-        <div className="footer">
-            <div className="container">
-                <span className="footer__row">
-                    <span className="footer__text">Copyright 2018</span>
-                    <span className="footer__text">Version 1.0.0</span>
-                </span>
-            </div>
-        </div>
-    )
-}
+const Footer = (props) => (
+    <div className="footer">
+        <span className="footer__row">
+            <span className="footer__text">Copyright {props.year}</span>
+            <span className="footer__text">Version {props.version}</span>
+        </span>
+    </div>
+);
 
 export default Footer;

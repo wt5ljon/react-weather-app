@@ -11,19 +11,33 @@
     background: darken(white, 15%);
     border-radius: 6px;
     flex-grow: 1;
-    color: darken($evening, 15%);
+    color: $ultramarine;
     border: none;
-    border-bottom: .3rem solid darken(white, 40%);
+    border-bottom: .3rem solid darken(white, 60%);
     margin-right: $s-size;
     padding: $s-size;
 }
 
-.location__button {
-    background: $sunflower;
+.app-button {
+    background: $indigo;
     border: none;
-    border-bottom: .3rem solid darken($sunflower, 25%);
+    border-bottom: .3rem solid lighten($indigo, 15%);
     border-radius: 6px;
-    color: darken($evening, 15%);
+    color: white;
     font-weight: 700;
     padding: $s-size;
+}
+
+.app-button--block {
+    border: none;
+}
+
+.link {
+    background: $indigo;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: 700;
+    padding: $s-size;
+    text-decoration: none;
 }

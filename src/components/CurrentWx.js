@@ -1,84 +1,86 @@
 import React from 'react';
 import moment from 'moment';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import getIcon from '../utility/getIcon';
 
 const apiKeyDarksky = process.env.DARKSKY_API_KEY;
 
 export default class CurrentWx extends React.Component {
     state = {
-        wxCurrent: null
-    };
-
-    getIcon = (icon) => {
-        const iconMapping = {
-            'clear-day': 'day-sunny',
-            'clear-night': 'night-clear',
-            'rain': 'rain',
-            'snow': 'snow',
-            'sleet': 'sleet',
-            'wind': 'strong-wind',
-            'fog': 'fog',
-            'cloudy': 'cloudy',
-            'partly-cloudy-day': 'day-cloudy',
-            'partly-cloudy-night': 'night-cloudy',
-            'hail': 'hail',
-            'thunderstorm': 'thunderstorm',
-            'tornado': 'tornado'
-        };
-        return iconMapping[icon];
-    };
+        wxCurrent: null,
+        message: ''
+    }
 
     getWxCurrent = () => {
+        this.setState(() => {
+            return {
+                wxCurrent: null,
+                message: 'Fetching Current Weather...Please Wait'
+            };
+        });
         const darkskyURL = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${apiKeyDarksky}/${this.props.location.latitude},${this.props.location.longitude}`;
         axios.get(darkskyURL)
         .then((response) => {
+            console.log('Call');
             this.setState(() => {
                 return {
-                    wxCurrent: response.data.currently
-                }
+                    wxCurrent: response.data.currently,
+                    message: ''
+                } 
             });
         })
         .catch((e) => {
-          console.log(e);
+            this.setState(() => {
+                return {
+                    wxCurrent: null,
+                    message: e    
+                };
+            });
         });
     };
 
     componentWillMount() {
-        const json = localStorage.getItem('wxCurrent');
-        const data = JSON.parse(json);
-        
-        if (data) {
-          this.setState(() => {
-            return ({
-              wxCurrent: data
-            });
-          });
+        if (this.props.location) {
+            this.getWxCurrent();
         }
     }
-    
-    componentDidUpdate() {
-        const json = JSON.stringify(this.state.currentWx);
-        localStorage.setItem('wxCurrent', json);
+
+    componentDidUpdate(prevProps) {
+        // Check if it's a new location, update current Wx if needed
+        if (this.props.location && (!prevProps.location || (this.props.location !== prevProps.location))) {
+            this.getWxCurrent();
+        }
     }
 
     render() {
-        console.log(this.state.currentWx);
+        const now = this.state.wxCurrent && moment.unix(this.state.wxCurrent.time);
         return (
             <div className="wxCurrent">
-                <button onClick={this.getWxCurrent}>Update Current Weather</button>
-                <h3>{this.props.location.address ?  `Current Conditions for ${this.props.location.address}` : 'No Location Selected'}</h3>
-                {!this.state.wxCurrent && <h3>No current conditions to show - Click 'Update' button to refresh</h3>}
-                {this.state.wxCurrent && <h3>Time: {moment.unix(this.state.wxCurrent.time).format('MMM DD YYYY, hh:mm:ss a')}</h3>}
-                {this.state.wxCurrent && <h3>Weather: {this.state.wxCurrent.summary}</h3>}
-                {this.state.wxCurrent && <h3>Temperature: {Math.round(this.state.wxCurrent.temperature)}{`\xB0F`}</h3>}
-                {this.state.wxCurrent && <h3>Feels Like: {Math.round(this.state.wxCurrent.apparentTemperature)}{`\xB0F`}</h3>}            
-                {this.state.wxCurrent && <h3>Dew Point: {Math.round(this.state.wxCurrent.dewPoint)}{`\xB0F`}</h3>}
-                {this.state.wxCurrent && <h3>Humidity: {this.state.wxCurrent.humidity * 100}%</h3>}
-                {this.state.wxCurrent && <h3>Wind Speed: {Math.round(this.state.wxCurrent.windSpeed)} mph</h3>}
-                {this.state.wxCurrent && <h3>Gusts: {Math.round(this.state.wxCurrent.windGust)} mph</h3>}
-                {this.state.wxCurrent && <h3>Wind Direction: {this.state.wxCurrent.windBearing}{`\xB0`}</h3>}
-                {this.state.wxCurrent && <i className={`wi wi-${this.getIcon(this.state.wxCurrent.icon)}`}></i>}            
-            </div>
+                <h3>{this.props.location ?  this.props.location.address : "No Location Selected"}</h3>
+                {this.state.message && <h3>{this.state.message}</h3>}
+                {this.state.wxCurrent && <h3>{now.format('MMM DD, YYYY')} valid at {now.format('hh:mm:ss a')}</h3>}
+                {this.state.wxCurrent && <h3><i className={`icon wi wi-${getIcon(this.state.wxCurrent.icon)}`}></i></h3>} 
+                {this.state.wxCurrent && <h3>{this.state.wxCurrent.summary}</h3>}
+                <div className="block">
+                    <div className="row__data">
+                        {this.state.wxCurrent && <h4>Temperature: {Math.round(this.state.wxCurrent.temperature)}{`\xB0F`}</h4>}
+                        {this.state.wxCurrent && <h4>Feels Like: {Math.round(this.state.wxCurrent.apparentTemperature)}{`\xB0F`}</h4>}                                    
+                    </div>
+                    <div className="row__data">
+                        {this.state.wxCurrent && <h4>Dew Point: {Math.round(this.state.wxCurrent.dewPoint)}{`\xB0F`}</h4>}
+                        {this.state.wxCurrent && <h4>Humidity: {this.state.wxCurrent.humidity * 100}%</h4>}       
+                    </div>
+                    <div className="row__data">
+                        {this.state.wxCurrent && <h4>Wind Speed: {Math.round(this.state.wxCurrent.windSpeed)} mph (Gust: {Math.round(this.state.wxCurrent.windGust)} mph)</h4>}
+                        {this.state.wxCurrent && <h4>Wind Direction: {this.state.wxCurrent.windBearing}{`\xB0`}</h4>}       
+                    </div>
+                    <div className="row__data">
+                        <button className="app-button app-button--block" onClick={this.getWxCurrent}>Update Current Weather</button>
+                        <Link to="/forecast" className="link">Get 7-Day Forecast</Link>
+                    </div>
+                </div> 
+                </div>
         );    
     }
 }

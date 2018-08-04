@@ -1,13 +1,16 @@
 .footer {
-    background: $starry_night;
-    padding: $s-size;
+    margin: 0;
 }
 
 .footer__row {
     display: flex;
     justify-content: space-between;
+    border: 2px solid $crimson-sky;
+    border-radius: 8px;
+    padding: $s-size;
 }
 
 .footer__text {
-    color: $sunflower; 
+    color: white;
+    font-weight: bold;
 }

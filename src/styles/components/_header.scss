@@ -1,19 +1,19 @@
 .header {
-    background: $starry_night;
+    background: $crimson_sky;
     margin-bottom: $l-size;
     padding: $s-size;
 }
 
 .header__title {
-    color: darken(white, 15%);
-    font-size: $l-size;
+    color: white;
+    font-size: $xl-size;
     margin: 0;
     margin-bottom: $s-size;
 }
 
 .header__subtitle {
-    color: $sunflower;
-    font-size: $m-size;
-    font-weight: 500;
+    color: $ultramarine;
+    font-size: $l-size;
+    font-weight: 700;
     margin: 0;
 }

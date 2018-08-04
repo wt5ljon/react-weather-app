@@ -15,17 +15,7 @@ html {
 }
 
 body {
-    background: $evening;
+    background: $indigo;
     font-family: Helvetica, Arial, sans-serif;
     font-size: $m-size;
-}
-
-button {
-    cursor: pointer;
-}
-
-.wi {
-    font-size: 80px;
-    color: darken($sunflower, 10%);
-    padding: $l-size;
 }
