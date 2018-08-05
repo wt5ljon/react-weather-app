@@ -8,7 +8,6 @@ module.exports = (env) => {
   const isProduction = env === 'production';
   const CSSExtract = new ExtractTextPlugin('styles.css');
 
-  console.log('env', env);
   return {
     mode: 'development',
     entry: './src/app.js',
@@ -60,8 +59,8 @@ module.exports = (env) => {
     devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
       contentBase: path.join(__dirname, 'public'),
-      historyApiFallback: true,
-      publicPath: '/dist/',
+      historyApiFallback: true
+      // publicPath: '/dist/',
     }
   }
 }

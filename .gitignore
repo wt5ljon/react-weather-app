@@ -1,6 +1,9 @@
 node_modules/
-.vscode/
+
 public/images/Thumbs.db
-public/dist/
+public/dist/bundle.js
+public/dist/bundle.js.map
+public/dist/styles.css
+public/dist/styles.css.map
 
 .env
