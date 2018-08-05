@@ -8,11 +8,16 @@
     background: $crimson_sky;
     border: none;
     border-radius: 6px;
-    color: $ultramarine;
+    color: $off-white;
     font-size: $row-size;
     font-weight: 700;
     padding: $s-size;
     text-decoration: none;
+}
+
+.forecast__link:hover {
+    background: $off-white;
+    color: $indigo;
 }
 
 .forecast__row {

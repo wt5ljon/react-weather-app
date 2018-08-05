@@ -17,7 +17,6 @@ export default class CurrentPage extends React.Component {
       const geocodeURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${apiKeyGoogle}`;
       axios.get(geocodeURL)
       .then((response) => {
-        console.log(response.data);
         if (response.data.status === 'OK') {
           this.setState(() => {
             return {
@@ -94,7 +93,7 @@ export default class CurrentPage extends React.Component {
             handleRequest={this.handleRequest} 
             onInputChange={this.handleInputChange}
             buttonText={this.state.location ? 'Change' : 'Get'} />
-          {this.state.error && <span className="error">Error: {this.state.error}</span>}
+          {this.state.error && <span className="message">Error: {this.state.error}</span>}
           {this.state.location && <CurrentWx location={this.state.location}  />}
         </div>
       </div>

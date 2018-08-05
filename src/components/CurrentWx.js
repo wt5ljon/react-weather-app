@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import getIcon from '../utility/getIcon';
+import { getWxIcon } from '../utility/getIcon';
 
 const apiKeyDarksky = process.env.DARKSKY_API_KEY;
 
@@ -22,7 +22,7 @@ export default class CurrentWx extends React.Component {
         const darkskyURL = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${apiKeyDarksky}/${this.props.location.latitude},${this.props.location.longitude}`;
         axios.get(darkskyURL)
         .then((response) => {
-            console.log('Call');
+            // console.log('Call');
             this.setState(() => {
                 return {
                     wxCurrent: response.data.currently,
@@ -58,9 +58,9 @@ export default class CurrentWx extends React.Component {
         return (
             <div className="wxCurrent">
                 <h3>{this.props.location ?  this.props.location.address : "No Location Selected"}</h3>
-                {this.state.message && <h3>{this.state.message}</h3>}
+                {this.state.message && <span className="message">{this.state.message}</span>}
                 {this.state.wxCurrent && <h3>{now.format('MMM DD, YYYY')} valid at {now.format('hh:mm:ss a')}</h3>}
-                {this.state.wxCurrent && <h3><i className={`icon wi wi-${getIcon(this.state.wxCurrent.icon)}`}></i></h3>} 
+                {this.state.wxCurrent && <h3><i className={`icon wi wi-${getWxIcon(this.state.wxCurrent.icon)}`}></i></h3>} 
                 {this.state.wxCurrent && <h3>{this.state.wxCurrent.summary}</h3>}
                 <div className="block">
                     <div className="row__data">
@@ -80,7 +80,7 @@ export default class CurrentWx extends React.Component {
                         <Link to="/forecast" className="link">Get 7-Day Forecast</Link>
                     </div>
                 </div> 
-                </div>
+            </div>
         );    
     }
 }

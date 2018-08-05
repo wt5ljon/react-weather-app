@@ -23,9 +23,7 @@ const Location = (props) => {
             <button className="app-button">{props.buttonText} Location</button>
         </span>
       </form>
-      <div className="error__block">
-        {props.error && <h3>Error: {props.error}</h3>}
-      </div>
+      {props.error && <span className="message">Error: {props.error}</span>}
     </div>
   );
 };
